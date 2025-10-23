@@ -162,6 +162,12 @@ StateOpt Context::operator()(State::Dueling& s) noexcept
 				nci.code = code;
 				s.core->AddCard(s.duelPtr, nci);
 			}
+			nci.loc = 0x80000000;
+			for (auto code : deck.Side())
+			{
+				nci.code = code;
+				s.core->AddCard(s.duelPtr, nci);
+			}
 			s.replay->AddDuelist(nci.team, nci.duelist,
 			{
 				duelists[{t, nci.duelist}]->Name(),

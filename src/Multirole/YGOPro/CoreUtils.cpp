@@ -325,6 +325,16 @@ Msg StripMessageForTeam(uint8_t team, Msg msg) noexcept
 	ptr++; // type ignored
 	switch(GetMessageType(msg))
 	{
+	case MSG_UPDATE_CARD: {
+		if (Read<uint8_t>(ptr) == team)
+			break;
+		if (!(Read<uint8_t>(ptr) & 0x43))
+			break;
+		ptr += 3U;
+		if (Read<uint32_t>(ptr) == QUERY_CODE)
+			Write<uint32_t>(ptr, 0U);
+		break;
+	}
 	case MSG_SET:
 	{
 		Write<uint32_t>(ptr, 0U);

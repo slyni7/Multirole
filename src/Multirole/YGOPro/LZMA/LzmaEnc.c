@@ -15,6 +15,10 @@
 #include "LzmaEnc.h"
 
 #include "LzFind.h"
+
+/*temp*/
+#define _7ZIP_ST
+
 #ifndef _7ZIP_ST
 #include "LzFindMt.h"
 #endif
